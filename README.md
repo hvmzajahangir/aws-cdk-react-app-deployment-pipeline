@@ -2,7 +2,7 @@
 
 ## Install and setup the AWS CLI and ensure your user has the relevant permissions
 
-For quick setup guide, follow the instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
+For a quick setup guide, follow the instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
 
 ## Setup a GitHub repository for 'my-react-app'
 
@@ -25,7 +25,7 @@ aws secretsmanager create-secret \
 
 ## Customize the CDK configuation
 
-In `cdk/bin/cdk.ts`, update the props passed to the stack to match your GitHub username, repository / main branch name, region and the name of your GitHub token on AWS Secrets Manager. Note: ensure that the secret stored in AWS Secrets Manager is in the same region where you want the resources deployed.
+In `/cdk/bin/cdk.ts`, update the props passed to the stack to match your GitHub username, repository / main branch name, region and the name of your GitHub token on AWS Secrets Manager. Note: ensure that the secret stored in AWS Secrets Manager is in the same region where you want the resources deployed.
 
 ```ts
 new CdkStack(app, "CdkStack", {
@@ -59,7 +59,7 @@ cdk bootstrap aws://<YOUR-ACCOUNT-NUMBER>/<YOUR-REGION>
 
 ## Deploy the stack
 
-After running the following commands, wait for your resources to be deployed (you will see a CloudFront domain name appear in the console once done). You also need to wait for CodePipeline to finish all three pipeline staages. You can monitor this in the AWS console.
+After running the following commands, wait for your resources to be deployed (you will see a CloudFront domain name appear in the console once done). You also need to wait for CodePipeline to finish all three pipeline stages. You can monitor this in the AWS console.
 
 ```console
 cdk synth
@@ -68,16 +68,16 @@ cdk deploy
 
 ## Visit the web app!
 
-After the CodePipeline has finished executing, grab the CloudFront distribution and visit your website. Any subsequent changes commited to the branch you defined in the configuration will trigger the pipeline again and deploy the changes.
-
-## Clean up
-
-Use `cdk destroy` once done to destroy the resources created by the stack to ensure you don't run into unexpected costs.
-
-Note that AWS will retain all the S3 buckets and their content. Either manually delete these via the console or setup a retention policy in the resource definition to destroy the objects and the bucket on stack deletion.
+After the CodePipeline has finished executing, grab the CloudFront distribution domain and visit your website. Any subsequent changes commited to the branch you defined in the configuration will trigger the pipeline again and deploy the changes.
 
 ![Distribution Domain](./assets/images/distribution-domain.png)
 
 ![CodePipeline Completion](./assets/images/codepipeline.png)
 
 ![Deployed React App](./assets/images/react-app.png)
+
+## Clean up
+
+Use `cdk destroy` once done to destroy the resources created by the stack to ensure you don't run into unexpected costs.
+
+Note that AWS will retain all the S3 buckets and their content. Either manually delete these via the console or setup a retention policy in the resource definition to destroy the objects and the bucket on stack deletion.
