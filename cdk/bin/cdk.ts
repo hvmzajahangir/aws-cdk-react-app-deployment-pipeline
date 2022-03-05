@@ -8,6 +8,8 @@ new CdkStack(app, "CdkStack", {
   github: {
     owner: "hvmzajahangir",
     repository: "my-react-app",
+    branch: "main",
+    GithubTokenName: "GithubPersonalAccessToken",
   },
   env: { region: "eu-west-2" },
 });
