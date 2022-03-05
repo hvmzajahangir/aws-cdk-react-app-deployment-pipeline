@@ -4,6 +4,8 @@ export interface PipelineProps extends StackProps {
     github: {
         owner: string;
         repository: string;
+        branch: string;
+        GithubTokenName: string;
     };
 }
 export declare class CdkStack extends Stack {

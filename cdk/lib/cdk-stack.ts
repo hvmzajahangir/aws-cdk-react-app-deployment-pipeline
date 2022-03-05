@@ -11,6 +11,8 @@ export interface PipelineProps extends StackProps {
   github: {
     owner: string;
     repository: string;
+    branch: string;
+    GithubTokenName: string;
   };
 }
 export class CdkStack extends Stack {
@@ -60,7 +62,7 @@ export class CdkStack extends Stack {
     const githubPersonalAccessToken = SecretsManager.Secret.fromSecretNameV2(
       this,
       "GithubPersonalAccessToken",
-      "GithubPersonalAccessToken"
+      props.github.GithubTokenName
     );
 
     // Stage 1: clone sources from repo
@@ -72,7 +74,7 @@ export class CdkStack extends Stack {
           repo: props.github.repository,
           owner: props.github.owner,
           oauthToken: githubPersonalAccessToken.secretValue,
-          branch: "main",
+          branch: props.github.branch,
           output: outputSources,
           trigger: CodePipelineAction.GitHubTrigger.WEBHOOK,
         }),
